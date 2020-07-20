@@ -30,10 +30,10 @@ async def increment_and_return_account_position():
 
 async def during_match_provided_acc(target_user):
     embed = display_during_match_provided_acc()
-    msg = await target_user[0].send(embed=embed)
+    msg = await target_user.send(embed=embed)
     await msg.add_reaction('📢')
     await asyncio.sleep(1)
-    #await reaction.message.channel.send(embed=embed)
+    await msg.add_reaction('🚫')
 
 
 async def account_request(account_need):

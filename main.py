@@ -31,11 +31,14 @@ async def on_reaction_add(reaction, user):
             if reaction.me == True and reaction.count == 2:
                 await reaction.remove(client.user)
                 if reaction.emoji == '✅':
-                    if reaction.message.embeds == display_account_rules():
+                    print(display_account_rules().title == reaction.message.embeds[0].title)
+                    if display_account_rules().title == reaction.message.embeds[0].title:
                         # send account details (user just confirmed to have read the rules);
                         pointer = await increment_and_return_account_position()
                         embed = display_account_info(username[pointer], password[pointer])
                         await reaction.message.edit(embed=embed)
+                        await asyncio.sleep(1)
+                        await during_match_provided_acc(user)
                 # elif reaction.emoji == '📢':
 
 

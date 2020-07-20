@@ -100,13 +100,15 @@ def display_account_info(username, password):
 def display_during_match_provided_acc():
     embed = discord.Embed(
         colour = discord.Color.orange(),
-        title = f'Match in Progress: {captains[0]} vs {captains[1]}',
+        title = f'Match in Progress:\n'
+                f'{get_captain(0)} vs {get_captain(1)}',
         description = f'Game in progress! If you have issues with your account, or with players in your game, use the buttons below to report issues.\n'
                     f'Use the  📢  reaction to report an issue with the account; password not working, fewer than 100,000 certs on a character.\n'
                     f'Use the  🚫  reaction to report an issue with a player ingame; Toxicity/Harassment, repeated rules violations, etc.',
     )
-    embed.set_thumbnail(
-        url="https://cdn.discordapp.com/attachments/703912354269888572/727931056476389396/PIL_Logo11_Zoomed.png")
+    # logo uses up too much space in the embed box
+    #embed.set_thumbnail(
+        #url="https://cdn.discordapp.com/attachments/703912354269888572/727931056476389396/PIL_Logo11_Zoomed.png")
     return embed
 
 
