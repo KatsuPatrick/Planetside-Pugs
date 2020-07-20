@@ -1,4 +1,5 @@
 import os
+import asyncio
 from discord.ext import commands
 from discord.ext.commands import bot
 
@@ -27,13 +28,28 @@ async def on_reaction_add(reaction, user):
     if not user.bot:
         # in a dm, on a message by the bot
         if reaction.message.channel.type == discord.ChannelType.private and reaction.message.author.id == client.user.id:
+            if reaction.me == True and reaction.count == 2:
+                await reaction.remove(client.user)
+                if reaction.emoji == '✅':
+                    if reaction.message.embeds == display_account_rules():
+                        # send account details (user just confirmed to have read the rules);
+                        pointer = await increment_and_return_account_position()
+                        embed = display_account_info(username[pointer], password[pointer])
+                        await reaction.message.edit(embed=embed)
+                        # await asyncio.sleep(2)
+                        embed = display_during_match_provided_acc()
+                        await user[-1].dm_channel.send(embed=embed)
+                        #await reaction.message.channel.send(embed=embed)
+                # elif reaction.emoji == '📢':
+
+
             # if the bot sent the same (correct) reaction as the user just responded with
             if reaction.me == True and reaction.count == 2 and reaction.emoji == '✅':
                 # unreact (can't be triggered again)
                 await reaction.remove(client.user)
-                pointer = await increment_return_account_position()
+                pointer = await increment_and_return_account_position()
                 # send account details (user just confirmed to have read the rules);
-                embed = account_info(username[pointer], password[pointer])
+                embed = display_account_info(username[pointer], password[pointer])
                 msg = await reaction.message.edit(embed=embed)
 
 @client.command(pass_content=True)
@@ -65,4 +81,4 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run('')
+client.run('NzE5OTAzMjU4MzIzNDUxOTI2.XxTHOA.StnXS36v1dKLoI3_8HpjvUgTZHM')

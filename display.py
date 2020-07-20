@@ -66,7 +66,8 @@ def match_list():
     return team_embed
 
 
-def account_rules():
+def display_account_rules():
+    # dm to be read and accepted before details given out to players that need to be provided accounts
     embed = discord.Embed(
         colour=discord.Color.red(),
         title='Jaeger Account Info:',
@@ -75,11 +76,13 @@ def account_rules():
     embed.set_thumbnail(
         url="https://cdn.discordapp.com/attachments/703912354269888572/727931056476389396/PIL_Logo11_Zoomed.png")
     embed.set_footer(
-        text='Failure to follow these rules can result in your suspension from   ALL   Jaeger events.\nBy reacting with a checkmark below, you confirm you understand these rules.')
+        text=f'Failure to follow these rules can result in your suspension from   ALL   Jaeger events.\n'
+            f'By reacting with a checkmark below, you confirm you understand these rules.')
     return embed
 
 
-def account_info(username, password):
+def display_account_info(username, password):
+    # dm with account details for players that need them
     embed = discord.Embed(
         colour=discord.Color.green(),
         title='Jaeger Account Info:',
@@ -92,3 +95,20 @@ def account_info(username, password):
     embed.set_footer(
         text='Failure to follow these rules can result in your suspension from   ALL   Jaeger events.\nBy reacting with a checkmark below, you confirm you understand these rules.')
     return embed
+
+
+def display_during_match_provided_acc():
+    embed = discord.Embed(
+        colour = discord.Color.orange(),
+        title = f'Match in Progress: {captains[0]} vs {captains[1]}',
+        description = f'Game in progress! If you have issues with your account, or with players in your game, use the buttons below to report issues.\n'
+                    f'Use the  📢  reaction to report an issue with the account; password not working, fewer than 100,000 certs on a character.\n'
+                    f'Use the  🚫  reaction to report an issue with a player ingame; Toxicity/Harassment, repeated rules violations, etc.',
+    )
+    embed.set_thumbnail(
+        url="https://cdn.discordapp.com/attachments/703912354269888572/727931056476389396/PIL_Logo11_Zoomed.png")
+    return embed
+
+
+def display_during_match_own_acc():
+    return

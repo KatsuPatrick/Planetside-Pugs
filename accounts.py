@@ -21,16 +21,24 @@ password = ['password_1', 'password_2', 'password_3', 'password_4',
 
 account_position = 0
 
-async def increment_return_account_position():
+async def increment_and_return_account_position():
     global account_position
+    account_position += 1
     if account_position >= len(username):
         account_position = 0
-    account_position += 1
     return account_position
+
+async def during_match_provided_acc(target_user):
+    embed = display_during_match_provided_acc()
+    msg = await target_user[0].send(embed=embed)
+    await msg.add_reaction('📢')
+    await asyncio.sleep(1)
+    #await reaction.message.channel.send(embed=embed)
+
 
 async def account_request(account_need):
     account_need: discord.Member
-    embed = account_rules()
+    embed = display_account_rules()
     msg = await account_need.send(embed=embed)
     await msg.add_reaction('✅')
     await asyncio.sleep(1)
