@@ -3,7 +3,7 @@ from discord.utils import get
 
 from lobby import *
 from match import *
-from captains import *
+from captains import get_captain
 from factions import *
 from teams import *
 
@@ -55,11 +55,11 @@ def match_list():
         colour=discord.Color.orange()
     )
     team_embed.add_field(name="Team 1",
-                         value=f"Captain: \n {captains[0]} ({factions_team[0]})\n Players:" + "\n".join(
+                         value=f"Captain: \n {get_captain(0)} ({factions_team[0]})\n Players:" + "\n".join(
                              team_2),
                          inline=True)
     team_embed.add_field(name="Team 2",
-                         value=f"Captain: \n {captains[1]} ({factions_team[1]})\n Players:" + "\n".join(
+                         value=f"Captain: \n {get_captain(1)} ({factions_team[1]})\n Players:" + "\n".join(
                              team_1),
                          inline=True)
     team_embed.add_field(name="Remaining", value="Players:" + "\n".join(roster), inline=True)
