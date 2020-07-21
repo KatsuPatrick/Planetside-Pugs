@@ -18,10 +18,9 @@ def add_match(player):
     add(player, players)
 
 
-def remove_match(player):
+def remove_from_match_list(player):
     remove(player, players)
 
 
 def clear_match():
     clear(players)
-

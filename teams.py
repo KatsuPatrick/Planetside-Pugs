@@ -14,7 +14,7 @@ def get_roster():
 
 def add_roster(player, team):
     add(player, roster[team])
-    remove_match(player)
+    remove_from_match_list(player)
 
 
 def clear_roster():
@@ -23,4 +23,3 @@ def clear_roster():
     clear(team_1)
     clear(team_2)
     clear_match()
-

@@ -13,7 +13,7 @@ def get_captain(index):
 
 def set_captain(player):
     add(player, captains)
-    remove_match(player)
+    remove_from_match_list(player)
 
 
 def remove_captain(player):
