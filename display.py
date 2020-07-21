@@ -101,7 +101,7 @@ def display_account_info(username_password):
 def display_during_match_provided_acc():
     embed = discord.Embed(
         colour = discord.Color.orange(),
-        title = f'Match in Progress:    {get_captain(0)} () vs {get_captain(1) ()}',
+        title = f'Match in Progress:    {get_captain(0)} () vs {get_captain(1)} ()',
         description = f'Use  📢  for an issue with the account (can\'t login, fewer than 100,000 certs, etc.)\n'
                     f'Use  🚫  for an issue with a player ingame (toxicity or harassment, repeated match rules infractions, etc.)',
     )
