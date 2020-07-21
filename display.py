@@ -81,19 +81,20 @@ def display_account_rules():
     return embed
 
 
-def display_account_info(username, password):
+def display_account_info(username_password):
     # dm with account details for players that need them
     embed = discord.Embed(
         colour=discord.Color.green(),
         title='Jaeger Account Info:',
         description=f'**MUST READ: [Rules](https://planetsideguide.com/other/jaeger/)**\n'
-                    f'Username: `{username}`\n '
-                    f'Password: `{password}`',
+                    f'Username: `{username_password[0]}`\n '
+                    f'Password: `{username_password[1]}`',
     )
     embed.set_thumbnail(
         url="https://cdn.discordapp.com/attachments/703912354269888572/727931056476389396/PIL_Logo11_Zoomed.png")
     embed.set_footer(
-        text='Failure to follow these rules can result in your suspension from   ALL   Jaeger events.\nBy reacting with a checkmark below, you confirm you understand these rules.')
+        text=f'Failure to follow these rules can result in your suspension from   ALL   Jaeger events.\n'
+            'By reacting with a checkmark below, you confirm you understand these rules.')
     return embed
 
 
@@ -114,3 +115,17 @@ def display_during_match_provided_acc():
 
 def display_during_match_own_acc():
     return
+
+def display_log_account_sent(requester_member, username, pointer):
+    pointer += 1 #1-based
+    embed = discord.Embed(
+        colour = discord.Color.blurple(),
+        title = f'Account {pointer}\'s Details Sent:',
+        description = f'{requester_member.display_name} ({requester_member.name}#{requester_member.discriminator})\n'
+                    f'has been given the account details for {username}, account #{pointer}.'
+    )
+    embed.set_thumbnail(
+        url=f"{requester_member.avatar_url}")
+    embed.set_footer(
+        text=f'user id: {requester_member.id}')
+    return embed

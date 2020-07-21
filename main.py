@@ -34,10 +34,11 @@ async def on_reaction_add(reaction, user):
                     # tick response to rules check
                     if display_account_rules().title == reaction.message.embeds[0].title:
                         # send account details (user just confirmed to have read the rules);
-                        pointer = await increment_and_return_account_position()
-                        embed = display_account_info(username[pointer], password[pointer])
+                        username_password = await get_next_username_password(user, client) # yes client is being sent as a param. lmk if you figure a better way.
+                        embed = display_account_info(username_password)
+                        username_password = None
                         await reaction.message.edit(embed=embed)
-                        await asyncio.sleep(1)
+                        await asyncio.sleep(10)
                         # sends followup message
                         await during_match_provided_acc(user)
                 # elif reaction.emoji == '📢':
@@ -67,6 +68,8 @@ async def on_member_update(before, after):
             after: discord.Member
             remove_lobby(after.mention)
             await after.send(f'You were removed from the PIL Pugs lobby because you went offline. Please rejoin the lobby when you are back online and ready to play!')
+
+
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):

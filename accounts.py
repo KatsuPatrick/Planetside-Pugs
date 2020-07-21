@@ -3,6 +3,8 @@ import asyncio
 from discord.ext.commands import bot
 
 from display import *
+from logs import log_account_sent
+
 
 username = ['username_1', 'username_2', 'username_3', 'username_4',
             'username_5', 'username_6', 'username_7', 'username_8',
@@ -21,12 +23,14 @@ password = ['password_1', 'password_2', 'password_3', 'password_4',
 
 account_position = 0
 
-async def increment_and_return_account_position():
+async def get_next_username_password(requester, client):
     global account_position
     account_position += 1
     if account_position >= len(username):
         account_position = 0
-    return account_position
+    await log_account_sent(requester, username[account_position], account_position, client)
+    return username[account_position], password[account_position]
+
 
 async def during_match_provided_acc(target_user):
     embed = display_during_match_provided_acc()
